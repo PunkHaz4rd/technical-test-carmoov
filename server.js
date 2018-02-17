@@ -6,6 +6,7 @@ const Webtask               = require('webtask-tools');
 const bodyParser            = require('body-parser');
 const methodOverride        = require('method-override');
 const nodemailer            = require('nodemailer');
+const request               = require('request');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
@@ -48,13 +49,16 @@ app.get('/mailmeagif', (req, res) => {
     res.status(406).json({'error': 'Email malformed'});
   } else {
     let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + (req.query.search ? '&s=' + req.query.search : 'random');
-    sendMail(req.query.email, url, (err, info) => {
-      if (err) {
-        res.status(500).send({'error': err, 'info': info});
-      } else {
-        res.sendStatus(200);
-      }
+    request(url, (err, res, body) => {
+      console.log(err, res, body);
     });
+    // sendMail(req.query.email, url, (err, info) => {
+    //   if (err) {
+    //     res.status(500).send({'error': err, 'info': info});
+    //   } else {
+    //     res.sendStatus(200);
+    //   }
+    // });
   }
 });
 
