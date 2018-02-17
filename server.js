@@ -1,17 +1,18 @@
-"use strict";
 
 const express               = require('express');
 const app                   = express();
 const Webtask               = require('webtask-tools');
 const bodyParser            = require('body-parser');
 const methodOverride        = require('method-override');
-const nodemailer              = require('nodemailer');
+const nodemailer            = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
+
+"use strict";
 
 // Define global mail actions:
 let transporter = nodemailer.createTransport({
