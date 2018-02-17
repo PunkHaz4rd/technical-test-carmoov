@@ -52,7 +52,6 @@ app.get('/mailmeagif', (req, res) => {
     } else {
       url += 'random?api_key=' + giphyApiKey;
     }
-    console.log(url);
     request(url, (err, response, body) => {
       let gifUrl = JSON.parse(body).data.images.fixed_height.url;
       sendMail(req.query.email, gifUrl, (err, info) => {
