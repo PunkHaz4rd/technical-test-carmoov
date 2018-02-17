@@ -1,4 +1,3 @@
-
 var express               = require('express');
 var app                   = express();
 var Webtask               = require('webtask-tools');
@@ -6,13 +5,13 @@ var bodyParser            = require('body-parser');
 var methodOverride        = require('method-override');
 var nodemailer            = require('nodemailer');
 
+"use strict";
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
-
-"use strict";
 
 // Define global mail actions:
 let transporter = nodemailer.createTransport({
