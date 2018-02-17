@@ -50,15 +50,14 @@ app.get('/mailmeagif', (req, res) => {
   } else {
     let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + (req.query.search ? '&s=' + req.query.search : 'random');
     request(url, (err, res, body) => {
-      console.log(err, res, body);
+      sendMail(req.query.email, res.url, (err, info) => {
+        if (err) {
+          res.status(500).send({'error': err, 'info': info});
+        } else {
+          res.sendStatus(200);
+        }
+      });
     });
-    // sendMail(req.query.email, url, (err, info) => {
-    //   if (err) {
-    //     res.status(500).send({'error': err, 'info': info});
-    //   } else {
-    //     res.sendStatus(200);
-    //   }
-    // });
   }
 });
 
