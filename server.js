@@ -36,7 +36,7 @@ let sendMail = function(to, giphyUrl, callback) {
   transporter.sendMail(mailOptions, callback);
 };
 
-app.post('/mailmeagif', (req, res) => {
+app.post('/mailmeagif', function(req, res) {
   "use strict";
 
   let giphyBaseUrl = 'http://api.giphy.com/v1/gifs/';
@@ -59,7 +59,7 @@ app.post('/mailmeagif', (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
   res.sendStatus(200);
 });
 
