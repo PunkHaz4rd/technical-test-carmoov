@@ -14,7 +14,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 
 // Define global mail actions:
-let transporter = nodemailer.createTransport('SMTP', {
+let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'test.carmoov@gmail.com',
