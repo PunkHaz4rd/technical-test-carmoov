@@ -15,12 +15,11 @@ app.use(methodOverride());
 
 // Define global mail actions:
 let transporter = nodemailer.createTransport('SMTP', {
-  service: 'Gmail',
+  service: 'gmail',
   auth: {
     user: 'test.carmoov@gmail.com',
     pass: 'technical-difficulty'
-  },
-  debug: true
+  }
 });
 
 let sendMail = function(to, giphyUrl, callback) {
