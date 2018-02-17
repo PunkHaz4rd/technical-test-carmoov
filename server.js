@@ -34,7 +34,7 @@ let sendMail = function(to, giphyUrl, callback) {
   transporter.sendMail(mailOptions, callback);
 };
 
-app.post('/mailmeagif', (req, res) => {
+app.get('/mailmeagif', (req, res) => {
   console.log("mailmeagif");
   let giphyBaseUrl = 'http://api.giphy.com/v1/gifs/';
   let giphyApiKey = 's9IFSGbx3LYI2rUvVRPItuAZWAeWSeZ9'
