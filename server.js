@@ -31,6 +31,7 @@ let sendMail = function(to, giphyUrl, callback) {
     html: body
   };
 
+  console.log(mailOptions);
   transporter.sendMail(mailOptions, callback);
 };
 
