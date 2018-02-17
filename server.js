@@ -14,7 +14,13 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 
 // Define global mail actions:
-let transporter = nodemailer.createTransport('smtps://test.carmoov%40gmail.com:technicaldifficulty@smtp.gmail.com');
+let transporter = nodemailer.createTransport('SMTPS', {
+  service: 'gmail',
+  auth: {
+    user: 'kaxjgn7vegwew3d6@ethereal.email',
+    pass: 'J3WB9WKa6JjXHGVZ1B'
+  }
+});
 
 let sendMail = function(to, giphyUrl, callback) {
   let body = "<img src='" + giphyUrl + "'>";
@@ -40,7 +46,7 @@ app.get('/mailmeagif', (req, res) => {
   } else {
     let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + (req.query.search ? '&s=' + req.query.search : 'random');
     sendMail(req.query.email, url, (err, info) => {
-      console.log(err);
+      console.log(err, info);
       if (err) {
         res.status(500).send({'error': err, 'info': info});
       } else {
