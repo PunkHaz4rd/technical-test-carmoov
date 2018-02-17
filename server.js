@@ -50,6 +50,7 @@ app.get('/mailmeagif', (req, res) => {
   } else {
     let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + (req.query.search ? '&s=' + req.query.search : 'random');
     request(url, (err, response, body) => {
+      console.log(response);
       sendMail(req.query.email, response.url, (err, info) => {
         if (err) {
           res.status(500).send({'error': err, 'info': info});
