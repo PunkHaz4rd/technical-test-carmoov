@@ -49,8 +49,8 @@ app.get('/mailmeagif', (req, res) => {
     res.status(406).json({'error': 'Email malformed'});
   } else {
     let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + (req.query.search ? '&s=' + req.query.search : 'random');
-    request(url, (err, res, body) => {
-      sendMail(req.query.email, res.url, (err, info) => {
+    request(url, (err, response, body) => {
+      sendMail(req.query.email, response.url, (err, info) => {
         if (err) {
           res.status(500).send({'error': err, 'info': info});
         } else {
