@@ -30,9 +30,11 @@ let sendMail = function(to, giphyUrl, callback) {
     subject: "You asked for a gif =)",
     html: body
   };
-
-  console.log(mailOptions);
-  transporter.sendMail(mailOptions, callback);
+  try {
+    transporter.sendMail(mailOptions, callback);
+  } catch(e) {
+    console.log(e);  
+  }
 };
 
 app.get('/mailmeagif', (req, res) => {
