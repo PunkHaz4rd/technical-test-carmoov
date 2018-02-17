@@ -1,10 +1,10 @@
 
-const express               = require('express');
-const app                   = express();
-const Webtask               = require('webtask-tools');
-const bodyParser            = require('body-parser');
-const methodOverride        = require('method-override');
-const nodemailer            = require('nodemailer');
+var express               = require('express');
+var app                   = express();
+var Webtask               = require('webtask-tools');
+var bodyParser            = require('body-parser');
+var methodOverride        = require('method-override');
+var nodemailer            = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
