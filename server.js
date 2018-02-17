@@ -49,7 +49,7 @@ app.post('/mailmeagif', function(req, res) {
     res.status(406).json({'error': 'Email malformed'});
   } else {
     let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + req.body.search ? ('&s=' + req.body.search) : 'random';
-    sendMail(req.body.email, url, (err, info) => {
+    sendMail(req.body.email, url, function(err, info) {
       if (err) {
         res.status(500).send({'error': err});
       } else {
