@@ -55,7 +55,6 @@ app.get('/mailmeagif', (req, res) => {
     console.log(url);
     request(url, (err, response, body) => {
       let gifUrl = JSON.parse(body).data.images.fixed_height.url;
-      console.log(JSON.parse(body));
       sendMail(req.query.email, gifUrl, (err, info) => {
         if (err) {
           res.status(500).send({'error': err, 'info': info});
