@@ -25,7 +25,7 @@ let transporter = nodemailer.createTransport('SMTP', {
 let sendMail = function(to, giphyUrl, callback) {
   let body = "<img src='" + giphyUrl + "'>";
   let mailOptions = {
-    from: "Your Giphy source of fun",
+    from: "test.carmoov@gmail.com",
     to: to,
     subject: "You asked for a gif =)",
     html: body
