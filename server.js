@@ -5,13 +5,13 @@ var bodyParser            = require('body-parser');
 var methodOverride        = require('method-override');
 var nodemailer            = require('nodemailer');
 
-"use strict";
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
+
+"use strict";
 
 // Define global mail actions:
 let transporter = nodemailer.createTransport({
@@ -23,6 +23,8 @@ let transporter = nodemailer.createTransport({
 });
 
 let sendMail = function(to, giphyUrl, callback) {
+  "use strict";
+
   let body = "<img src='" + giphyUrl + "'>";
   let mailOptions = {
     from: "Your Giphy source of fun",
@@ -35,6 +37,8 @@ let sendMail = function(to, giphyUrl, callback) {
 };
 
 app.post('/mailmeagif', (req, res) => {
+  "use strict";
+
   let giphyBaseUrl = 'http://api.giphy.com/v1/gifs/';
   let giphyApiKey = 's9IFSGbx3LYI2rUvVRPItuAZWAeWSeZ9'
   let emailTest = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
