@@ -5,7 +5,7 @@ const app                   = express();
 const Webtask               = require('webtask-tools');
 const bodyParser            = require('body-parser');
 const methodOverride        = require('method-override');
-const nodemailer            = require('nodemailer');
+const nodemailer            = require('node4mailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'true'}));
