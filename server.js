@@ -25,7 +25,7 @@ let transporter = nodemailer.createTransport({
 });
 
 let sendMail = function(to, giphyUrl, callback) {
-  let body = "<img src='" + giphyUrl + "'>";
+  let body = '<img src="' + giphyUrl + '">';
   let mailOptions = {
     from: "Test CarMoov",
     to: to,
