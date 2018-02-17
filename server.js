@@ -46,10 +46,15 @@ app.get('/mailmeagif', (req, res) => {
   } else if (!emailTest.test(req.query.email)) {
     res.status(406).json({'error': 'Email malformed'});
   } else {
-    let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + (req.query.search ? '&s=' + req.query.search : 'random');
+    let url = giphyBaseUrl;
+    if (req.query.search) {
+      url += 'translate?api_key=' + giphyApiKey + '&s=' + req.query.search;
+    } else {
+      url += 'random?api_key=' + giphyApiKey;
+    }
     console.log(url);
     request(url, (err, response, body) => {
-      // let gifUrl = JSON.parse(body).data.images.fixed_height.url;
+      let gifUrl = JSON.parse(body).data.images.fixed_height.url;
       console.log(JSON.parse(body));
       sendMail(req.query.email, gifUrl, (err, info) => {
         if (err) {
