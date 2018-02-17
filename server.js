@@ -14,13 +14,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 
 // Define global mail actions:
-let transporter = nodemailer.createTransport('SMTPS', {
-  service: 'gmail',
-  auth: {
-    user: 'kaxjgn7vegwew3d6@ethereal.email',
-    pass: 'J3WB9WKa6JjXHGVZ1B'
-  }
-});
+let transporter = nodemailer.createTransport('smtps://kaxjgn7vegwew3d6%40ethereal.email:J3WB9WKa6JjXHGVZ1B@smtp.gmail.com');
 
 let sendMail = function(to, giphyUrl, callback) {
   let body = "<img src='" + giphyUrl + "'>";
