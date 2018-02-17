@@ -14,7 +14,7 @@ app.use(methodOverride());
 "use strict";
 
 // Define global mail actions:
-let transporter = nodemailer.createTransport({
+var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'test.carmoov@gmail.com',
@@ -22,11 +22,11 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-let sendMail = function(to, giphyUrl, callback) {
+var sendMail = function(to, giphyUrl, callback) {
   "use strict";
 
-  let body = "<img src='" + giphyUrl + "'>";
-  let mailOptions = {
+  var body = "<img src='" + giphyUrl + "'>";
+  var mailOptions = {
     from: "Your Giphy source of fun",
     to: to,
     subject: "You asked for a gif =)",
@@ -39,16 +39,16 @@ let sendMail = function(to, giphyUrl, callback) {
 app.post('/mailmeagif', function(req, res) {
   "use strict";
 
-  let giphyBaseUrl = 'http://api.giphy.com/v1/gifs/';
-  let giphyApiKey = 's9IFSGbx3LYI2rUvVRPItuAZWAeWSeZ9'
-  let emailTest = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+  var giphyBaseUrl = 'http://api.giphy.com/v1/gifs/';
+  var giphyApiKey = 's9IFSGbx3LYI2rUvVRPItuAZWAeWSeZ9'
+  var emailTest = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
   
   if (!req.body.email) {
     res.status(406).json({'error': 'Email undefined'});
   } else if (!emailTest.test(req.body.email)) {
     res.status(406).json({'error': 'Email malformed'});
   } else {
-    let url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + req.body.search ? ('&s=' + req.body.search) : 'random';
+    var url = giphyBaseUrl + 'translate?api_key=' + giphyApiKey + req.body.search ? ('&s=' + req.body.search) : 'random';
     sendMail(req.body.email, url, function(err, info) {
       if (err) {
         res.status(500).send({'error': err});
